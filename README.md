@@ -1,4 +1,5 @@
 skeleton
 ========
 
-Skeleton Jenkinsg project for Powershell and ActionScript
+Skeleton Jenkinsg project for Powershell and AppleScript
+Forked and modified jenkins beaker plugin.
