@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!--
+  This view is used to render the installed plugins page.
+-->
+<div>
+  This  Jenkins plugin  is a sample to explain how to pass script path  or script contents to PowerShell. It was created to support dealing with signed scripts
+</div>

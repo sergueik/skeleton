@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:section title="Beaker Builder">
+    <f:entry title="Beaker server URL" field="beakerURL" description="URL of Beaker server where you will run the tasks.">
+      <f:textbox/>
+    </f:entry>
+    <f:entry title="Beaker login" field="login" description="Beaker login">
+      <f:textbox/>
+    </f:entry>
+    <f:entry title="Beaker password" field="password" description="Beaker password">
+      <f:password/>
+    </f:entry>
+    <f:validateButton title="${%Test Connection}" progress="${%Testing...}" method="testConnection" with="beakerURL,login,password"/>
+  </f:section>
+</j:jelly>

@@ -1,0 +1,14 @@
+First runnable version of this skeleton  project
+Intended to allow rich configuration screen in Manage Jenkins  similar to that finally offered by Groovy plugin 1.16+
+background:
+
+With core Powershell 
+one can decide which .Net framework to use (mostly through registry manipulation, but also through OSX  
+plist-style  configuration files
+http://stackoverflow.com/questions/2094694/how-can-i-run-powershell-with-the-net-4-runtime
+and report the environment used:
+http://stackoverflow.com/questions/3344855/which-net-version-is-my-powershell-script-using
+
+
+This may be neded for automating a mix of old (.net 2) and new (.net 4) applications  and accessing Windows server
+management in a Powershell version specific ways
