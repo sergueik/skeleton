@@ -13,41 +13,46 @@ import java.io.IOException;
 
 import jenkins.model.Jenkins;
 
-public abstract class JobSource implements Describable<JobSource> {
+public abstract class JobSource implements Describable<JobSource>{
+  protected static final String DEFAULT_JOB_PREFIX = "jenkins_";
+  protected static final String DEFAULT_JOB_SUFFIX = ".ps1";
 
-    protected static final String DEFAULT_JOB_PREFIX = "jenkins_";
-    protected static final String DEFAULT_JOB_SUFFIX = ".ps1";
+  protected String jobName;
 
-    protected String jobName;
+  public String getJobName() {
+    return jobName;
+  }
 
-    public String getJobName() {
-        return jobName;
-    }
+  public abstract File createJobFile(AbstractBuild< ? , ? >build,
+                                     BuildListener listener) throws
+  InterruptedException,
+  IOException;
 
-    public abstract File createJobFile(AbstractBuild<?, ?> build, BuildListener listener) throws InterruptedException,
-            IOException;
+  public FilePath createDefaultJobFile(String jobContent,
+                                       AbstractBuild< ? , ? >build,
+                                       BuildListener listener)
+  throws InterruptedException, IOException {
+    String job          = jobContent;
+    ParametersAction pa = build.getAction(ParametersAction.class );
 
-    public FilePath createDefaultJobFile(String jobContent, AbstractBuild<?, ?> build, BuildListener listener)
-            throws InterruptedException, IOException {
-        String job = jobContent;
-        ParametersAction pa = build.getAction(ParametersAction.class);
-        // expand build parameters
-        if (pa != null)
-            job = pa.substitute(build, job);
-        // expand environment variables
-        jobContent = build.getEnvironment(listener).expand(jobContent);
-				// The newlines are not converted to platform specific 
-        FilePath path = build.getWorkspace().createTextTempFile(DEFAULT_JOB_PREFIX, DEFAULT_JOB_SUFFIX, jobContent,
-                true);
-        return path;
-    }
+    // expand build parameters
+    if (pa != null) job = pa.substitute(build, job);
 
-    public static DescriptorExtensionList<JobSource, JobSource.JobSourceDescriptor> all() {
-        return Jenkins.getInstance().getDescriptorList(JobSource.class);
-    }
+    // expand environment variables
+    jobContent = build.getEnvironment(listener).expand(jobContent);
 
-    public static abstract class JobSourceDescriptor extends Descriptor<JobSource> {
-    }
+    // The newlines are not converted to platform specific
+    FilePath path = build.getWorkspace().createTextTempFile(DEFAULT_JOB_PREFIX,
+                                                            DEFAULT_JOB_SUFFIX,
+                                                            jobContent,
+                                                            true);
+    return path;
+  }
 
+  public static DescriptorExtensionList<JobSource,
+                                        JobSource.JobSourceDescriptor>all() {
+    return Jenkins.getInstance().getDescriptorList(JobSource.class );
+  }
+
+  public static abstract class JobSourceDescriptor extends Descriptor<JobSource>{}
 }
-

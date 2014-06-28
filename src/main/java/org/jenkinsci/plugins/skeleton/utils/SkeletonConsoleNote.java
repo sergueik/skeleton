@@ -7,24 +7,29 @@ import hudson.console.ConsoleAnnotator;
 import hudson.console.ConsoleNote;
 import hudson.model.Run;
 
-public class SkeletonConsoleNote extends ConsoleNote<Run<?, ?>> {
+public class SkeletonConsoleNote extends ConsoleNote<Run< ? , ? > >{
+  @Override
+  public ConsoleAnnotator<Run< ? , ? > >annotate(Run< ? , ? >context,
+                                                 MarkupText text,
+                                                 int charPos) {
+    if (text.getText().contains("ERROR")) text.addMarkup(0,
+                                                         text.length(),
+                                                         "<span style=\"font-weight: bold; color:red\">",
+                                                         "</span>");
 
-    @Override
-    public ConsoleAnnotator<Run<?, ?>> annotate(Run<?, ?> context, MarkupText text, int charPos) {
-        if (text.getText().contains("ERROR"))
-            text.addMarkup(0, text.length(), "<span style=\"font-weight: bold; color:red\">", "</span>");
-        if (text.getText().contains("INFO"))
-            text.addMarkup(0, text.length(), "<span style=\"color:#993300\">", "</span>");
-        return null;
+    if (text.getText().contains("INFO")) text.addMarkup(0,
+                                                        text.length(),
+                                                        "<span style=\"color:#993300\">",
+                                                        "</span>");
+    return null;
+  }
+
+  @Extension
+  public static final class DescriptorImpl extends ConsoleAnnotationDescriptor {
+    public String getDisplayName() {
+      return "Skeleton Console Note";
     }
+  }
 
-    @Extension
-    public static final class DescriptorImpl extends ConsoleAnnotationDescriptor {
-        public String getDisplayName() {
-            return "Skeleton Console Note";
-        }
-    }
-
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 }
-

@@ -7,9 +7,4 @@
       <st:include page="${descriptor.configPage}" from="${descriptor}"/>
     </j:forEach>
   </f:section>
-  <f:section title="Additional actions">
-    <f:entry title="Download Script log files" field="downloadFiles">
-      <f:checkbox/>
-    </f:entry>
-  </f:section>
 </j:jelly>
