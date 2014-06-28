@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
   <f:radioBlock name="jobSource" value="${instance}" title="Get script from file" checked="${instance.class==descriptor.clazz}">
-    <f:entry title="Job name" field="jobName" description="Job name (unused)">
-      <f:textbox/>
-    </f:entry>
     <f:entry title="Path" field="jobPath" description="Script Path (relative to workspace root).">
       <f:textbox/>
     </f:entry>

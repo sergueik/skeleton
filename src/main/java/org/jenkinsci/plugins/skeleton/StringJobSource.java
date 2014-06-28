@@ -4,21 +4,16 @@ import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.BuildListener;
 import hudson.model.AbstractBuild;
-
 import java.io.File;
 import java.io.IOException;
-
 import jenkins.model.Jenkins;
-
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class StringJobSource extends JobSource {
   private final String jobContent;
 
   @DataBoundConstructor
-  public StringJobSource(String jobName,
-                         String jobContent) {
-    this.jobName    = jobName;
+  public StringJobSource(String jobContent) {
     this.jobContent = jobContent;
   }
 

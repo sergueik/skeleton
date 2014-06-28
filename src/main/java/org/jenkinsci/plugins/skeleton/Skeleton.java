@@ -6,7 +6,6 @@ import hudson.EnvVars;
 import hudson.Util;
 import hudson.util.VariableResolver;
 import hudson.util.FormValidation;
-
 import hudson.Launcher;
 import hudson.model.BuildListener;
 import hudson.model.Result;
@@ -14,7 +13,6 @@ import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,23 +23,18 @@ import java.util.Properties;
 import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
-
-
 import net.sf.json.JSONObject;
-
 import org.jenkinsci.plugins.skeleton.utils.ConsoleLogger;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
-
 public class Skeleton extends Builder {
   private final JobSource jobSource;
-  private final boolean   downloadFiles;
+ // private final boolean   downloadFiles;
   private String properties;
   private String javaOpts;
 
@@ -49,18 +42,18 @@ public class Skeleton extends Builder {
   public Skeleton(JobSource jobSource,
                   boolean   downloadFiles) {
     this.jobSource     = jobSource;
-    this.downloadFiles = downloadFiles;
-    System.out.println("download is " + downloadFiles);
+   // this.downloadFiles = downloadFiles;
+   // System.out.println("download is " + downloadFiles);
   }
 
   public JobSource getJobSource() {
     return jobSource;
   }
-
+/*
   public boolean getDownloadFiles() {
     return downloadFiles;
   }
-
+*/
   private void log(ConsoleLogger console, String message) {
     console.logAnnot(message);
   }
@@ -291,26 +284,6 @@ public class Skeleton extends Builder {
        }
      */
     list.add(cmd);
-
-    // Add class path
-
-    /*
-
-       if(classPath != null && !classPath.equals("")){
-            String pathSeparator = isOnUnix ? ":" : ";";
-            StringTokenizer tokens = new StringTokenizer(classPath);
-            list.add("-cp");
-            // class path has to be one item, otherwise spaces are add around
-               class path separator and build will fail
-            StringBuilder sb = new StringBuilder();
-            sb.append(Util.replaceMacro(tokens.nextToken(),vr));
-        while(tokens.hasMoreTokens()) {
-            sb.append(pathSeparator);
-            sb.append(Util.replaceMacro(tokens.nextToken(),vr));
-        }
-        list.add(sb.toString());
-       }
-     */
 
     // Add groovy parameters
 

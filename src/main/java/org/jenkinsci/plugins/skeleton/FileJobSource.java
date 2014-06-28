@@ -20,9 +20,8 @@ public class FileJobSource extends JobSource {
     private String jobPath;
 
     @DataBoundConstructor
-    public FileJobSource(String jobName, String jobPath) {
-        this.jobName = jobName;
-        this.jobPath = jobPath;
+    public FileJobSource(String jobPath) {
+       this.jobPath = jobPath;
     }
 
     /**
@@ -32,11 +31,6 @@ public class FileJobSource extends JobSource {
         return jobPath;
     }
 
-    /**
-     * Reads job XML from file and expands variable by calling
-     * {@link JobSource#createDefaultJobFile(String, AbstractBuild, BuildListener)}. For security reasons file path is
-     * assumes that file path is relative to workspace directory (i.e. file is within workspace).
-     */
     @Override
     public File createJobFile(AbstractBuild<?, ?> build, BuildListener listener) throws InterruptedException,
             IOException {

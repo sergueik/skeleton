@@ -7,21 +7,13 @@ import hudson.model.Describable;
 import hudson.model.AbstractBuild;
 import hudson.model.Descriptor;
 import hudson.model.ParametersAction;
-
 import java.io.File;
 import java.io.IOException;
-
 import jenkins.model.Jenkins;
 
 public abstract class JobSource implements Describable<JobSource>{
   protected static final String DEFAULT_JOB_PREFIX = "jenkins_";
   protected static final String DEFAULT_JOB_SUFFIX = ".ps1";
-
-  protected String jobName;
-
-  public String getJobName() {
-    return jobName;
-  }
 
   public abstract File createJobFile(AbstractBuild< ? , ? >build,
                                      BuildListener listener) throws
