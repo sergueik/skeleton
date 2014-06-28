@@ -202,6 +202,11 @@ public class Skeleton extends Builder {
             sb.append(c);
             sb.append(" ");
           }
+
+          sb.append( "-ExecutionPolicy");
+          sb.append(" ");
+          sb.append( "ByPass");
+          sb.append(" ");
           log(console, "[Skeleton] INFO: Command  " + sb.toString());
           result = 0;
           result = launcher.launch().cmds(cmd).envs(envVars).stdout(listener).pwd(
