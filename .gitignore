@@ -1,4 +1,13 @@
 .classpath
 .project
 /target
+/target/work
 /work
+/bin
+/.settings
+/pom.xml.releaseBackup
+/release.properties
+/settings.xml
+*.unc-backup~
+*.uncrustify
+*.sw?
