@@ -52,9 +52,7 @@ public class StringJobSource extends JobSource {
     String joinPattern  = "\r\n";
     lines = jobContent.split(splitPattern);
 
-    FilePath path = createDefaultJobFile(Join(Push(lines,
-                                                   ""),
-                                              joinPattern), build, listener);
+    FilePath path = createDefaultJobFile(Join(Push(lines, ""), joinPattern), build, listener);
     return new File(path.getRemote());
   }
 

@@ -14,7 +14,6 @@ import jenkins.model.Jenkins;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 
-
 public class FileJobSource extends JobSource {
 
     private String jobPath;
