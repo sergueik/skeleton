@@ -2,7 +2,8 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
   <f:radioBlock name="jobSource" value="${instance}" title="Specify script inline" checked="${instance.class==descriptor.clazz}">
     <f:entry title="Script contents" field="jobContent" description="script contents">
-      <f:textarea/>
+<f:textarea checkMethod="post" codemirror-mode="clike"
+    codemirror-config="mode: 'text/x-csharp', lineNumbers: true, matchBrackets: true, onBlur: function(editor){editor.save()}"/>
     </f:entry>
     <input type="hidden" name="stapler-class" value="${descriptor.clazz.name}"/>
   </f:radioBlock>
